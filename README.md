@@ -1,6 +1,9 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/CAHTEL/php-project-57/workflows/hexlet-check/badge.svg)](https://github.com/CAHTEL/php-project-57/actions)
 
+### Linter test
+[![linter and test](https://github.com/CAHTEL/php-project-57/actions/workflows/linter-check.yaml/badge.svg?branch=main)](https://github.com/CAHTEL/php-project-57/actions/workflows/linter-check.yaml)
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

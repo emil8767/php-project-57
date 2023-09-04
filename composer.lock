@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb957138a1ebbf62176ec990efb1f0d8",
+    "content-hash": "bfbc9e109d4c95e3401609936a8c76cd",
     "packages": [
         {
             "name": "brick/math",
@@ -971,6 +971,63 @@
             "time": "2023-08-27T10:19:19+00:00"
         },
         {
+            "name": "laracasts/flash",
+            "version": "3.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laracasts/flash.git",
+                "reference": "6330bc3c027d3c03188b41c58133016f8226b8fb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laracasts/flash/zipball/6330bc3c027d3c03188b41c58133016f8226b8fb",
+                "reference": "6330bc3c027d3c03188b41c58133016f8226b8fb",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.0|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master",
+                "phpunit/phpunit": "^6.1|^9.5.10"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laracasts\\Flash\\FlashServiceProvider"
+                    ],
+                    "aliases": {
+                        "Flash": "Laracasts\\Flash\\Flash"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Laracasts/Flash/functions.php"
+                ],
+                "psr-0": {
+                    "Laracasts\\Flash": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeffrey Way",
+                    "email": "jeffrey@laracasts.com"
+                }
+            ],
+            "description": "Easy flash notifications",
+            "support": {
+                "source": "https://github.com/laracasts/flash/tree/3.2.2"
+            },
+            "time": "2023-01-30T20:31:40+00:00"
+        },
+        {
             "name": "laravel/framework",
             "version": "v10.21.0",
             "source": {
@@ -1412,6 +1469,79 @@
                 "source": "https://github.com/laravel/tinker/tree/v2.8.2"
             },
             "time": "2023-08-15T14:27:00+00:00"
+        },
+        {
+            "name": "laravelcollective/html",
+            "version": "v6.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelCollective/html.git",
+                "reference": "64ddfdcaeeb8d332bd98bef442bef81e39c3910b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/64ddfdcaeeb8d332bd98bef442bef81e39c3910b",
+                "reference": "64ddfdcaeeb8d332bd98bef442bef81e39c3910b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "^6.0|^7.0|^8.0|^9.0|^10.0",
+                "illuminate/routing": "^6.0|^7.0|^8.0|^9.0|^10.0",
+                "illuminate/session": "^6.0|^7.0|^8.0|^9.0|^10.0",
+                "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0",
+                "illuminate/view": "^6.0|^7.0|^8.0|^9.0|^10.0",
+                "php": ">=7.2.5"
+            },
+            "require-dev": {
+                "illuminate/database": "^6.0|^7.0|^8.0|^9.0|^10.0",
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "~8.5|^9.5.10"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Collective\\Html\\HtmlServiceProvider"
+                    ],
+                    "aliases": {
+                        "Form": "Collective\\Html\\FormFacade",
+                        "Html": "Collective\\Html\\HtmlFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Collective\\Html\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Engebretson",
+                    "email": "adam@laravelcollective.com"
+                },
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "description": "HTML and Form Builders for the Laravel Framework",
+            "homepage": "https://laravelcollective.com",
+            "support": {
+                "issues": "https://github.com/LaravelCollective/html/issues",
+                "source": "https://github.com/LaravelCollective/html"
+            },
+            "abandoned": "spatie/laravel-html",
+            "time": "2023-04-25T02:46:11+00:00"
         },
         {
             "name": "league/commonmark",
@@ -3090,6 +3220,141 @@
                 }
             ],
             "time": "2023-04-15T23:01:58+00:00"
+        },
+        {
+            "name": "rollbar/rollbar",
+            "version": "v4.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rollbar/rollbar-php.git",
+                "reference": "4e829697ada547513065eb8c47eaf6141f61d1dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rollbar/rollbar-php/zipball/4e829697ada547513065eb8c47eaf6141f61d1dd",
+                "reference": "4e829697ada547513065eb8c47eaf6141f61d1dd",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "monolog/monolog": "^2 || ^3",
+                "php": ">=8.0.0 <9.0",
+                "psr/log": "^1 || ^2 || ^3"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.5.1",
+                "phpmd/phpmd": "^2",
+                "phpunit/phpunit": "^9.6",
+                "squizlabs/php_codesniffer": "^3.6 || 3.x-dev",
+                "vimeo/psalm": "^5"
+            },
+            "suggest": {
+                "fluent/logger": "Needed to use the 'fluent' handler for fluentd support"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Rollbar\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rollbar, Inc.",
+                    "email": "support@rollbar.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Monitors errors and exceptions and reports them to Rollbar",
+            "homepage": "https://github.com/rollbar/rollbar-php",
+            "keywords": [
+                "debugging",
+                "errors",
+                "exceptions",
+                "logging",
+                "monitoring"
+            ],
+            "support": {
+                "email": "support@rollbar.com",
+                "issues": "https://github.com/rollbar/rollbar-php/issues",
+                "source": "https://github.com/rollbar/rollbar-php/tree/v4.0.1"
+            },
+            "time": "2023-04-28T20:01:46+00:00"
+        },
+        {
+            "name": "rollbar/rollbar-laravel",
+            "version": "v8.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rollbar/rollbar-php-laravel.git",
+                "reference": "5b5df8a663f345ed455ac1a262c2fcb1f8451b8a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rollbar/rollbar-php-laravel/zipball/5b5df8a663f345ed455ac1a262c2fcb1f8451b8a",
+                "reference": "5b5df8a663f345ed455ac1a262c2fcb1f8451b8a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^10.0",
+                "php": "^8.1",
+                "rollbar/rollbar": "^4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1",
+                "orchestra/testbench": "^8.0",
+                "php-coveralls/php-coveralls": "^2.2",
+                "phpunit/phpunit": "^8|^9.1",
+                "squizlabs/php_codesniffer": "3.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rollbar\\Laravel\\RollbarServiceProvider"
+                    ],
+                    "aliases": {
+                        "Rollbar": "Rollbar\\Laravel\\Facades\\Rollbar"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rollbar\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jens Segers",
+                    "homepage": "https://jenssegers.com"
+                },
+                {
+                    "name": "Artur Moczulski",
+                    "email": "artur.moczulski@gmail.com",
+                    "role": "Contractor @ Rollbar, Inc."
+                }
+            ],
+            "description": "Rollbar error monitoring integration for Laravel projects",
+            "homepage": "https://github.com/rollbar/rollbar-php-laravel",
+            "keywords": [
+                "error",
+                "laravel",
+                "logging",
+                "monitoring",
+                "rollbar"
+            ],
+            "support": {
+                "issues": "https://github.com/rollbar/rollbar-php-laravel/issues",
+                "source": "https://github.com/rollbar/rollbar-php-laravel/tree/v8.0.0"
+            },
+            "time": "2023-03-20T23:58:59+00:00"
         },
         {
             "name": "symfony/console",
@@ -5802,6 +6067,68 @@
                 "source": "https://github.com/hamcrest/hamcrest-php/tree/v2.0.1"
             },
             "time": "2020-07-09T08:09:16+00:00"
+        },
+        {
+            "name": "laravel/breeze",
+            "version": "v1.23.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/breeze.git",
+                "reference": "6d2c37a5d9febe9d7714ecf7c85db847591b3bb5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/6d2c37a5d9febe9d7714ecf7c85db847591b3bb5",
+                "reference": "6d2c37a5d9febe9d7714ecf7c85db847591b3bb5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^10.17",
+                "illuminate/filesystem": "^10.17",
+                "illuminate/support": "^10.17",
+                "illuminate/validation": "^10.17",
+                "php": "^8.1.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^8.0",
+                "phpstan/phpstan": "^1.10"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Breeze\\BreezeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Breeze\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Minimal Laravel authentication scaffolding with Blade and Tailwind.",
+            "keywords": [
+                "auth",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/breeze/issues",
+                "source": "https://github.com/laravel/breeze"
+            },
+            "time": "2023-08-27T14:49:38+00:00"
         },
         {
             "name": "laravel/pint",

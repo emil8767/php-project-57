@@ -16,8 +16,9 @@ class TaskStatusController extends Controller
         return view('statuses.index', compact('statuses'));
     }
 
-    public function create()
+    public function create(TaskStatus $taskStatus)
     {
+        $this->authorize('create', $taskStatus);
         $status = new TaskStatus();
         return view('statuses.create', compact('status'));
     }
@@ -43,10 +44,10 @@ class TaskStatusController extends Controller
         
     }
 
-    public function update(Request $request, TaskStatus $taskStatus, )
+    public function update(Request $request, TaskStatus $taskStatus)
     {
         $this->authorize('update', $taskStatus);
-        $status = TaskStatus::findOrFail($taskStatus);
+        $status = TaskStatus::findOrFail($id);
         $status->name = $request->input('name');
         $status->save();
         return redirect()
@@ -54,8 +55,9 @@ class TaskStatusController extends Controller
 
     }
 
-    public function destroy($id)
+    public function destroy(TaskStatus $taskStatus)
     {
+        $this->authorize('delete', $taskStatus);
         $status = TaskStatus::find($id);
         if ($status) {
             $status->delete();

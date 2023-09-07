@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Mail\MyTestMail;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\TaskStatusController;
+use App\Http\Controllers\LabelController;
+use App\Http\Controllers\TaskController;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +26,8 @@ Route::get('/', function () {
 })->name('home');
 
 Route::resource('task_statuses', TaskStatusController::class);
+Route::resource('labels', LabelController::class);
+Route::resource('tasks', TaskController::class);
 
 Route::get('/testroute', function() {
     $name = "Funny Coder";

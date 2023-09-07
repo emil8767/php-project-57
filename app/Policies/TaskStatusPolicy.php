@@ -17,7 +17,8 @@ class TaskStatusPolicy
 
     public function update(User $user, TaskStatus $taskStatus): bool
     {
-        return Auth::check();
+         return Auth::check();
+         
     }
 
     public function delete(User $user, TaskStatus $taskStatus): bool

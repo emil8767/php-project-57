@@ -5,10 +5,10 @@
 <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
 @include('flash-message')
 <div class="grid col-span-full">
-<h1 class="mb-5">Статусы</h1>
+<h1 class="mb-5">Метки</h1>
 <div>
-    <a href="{{route('task_statuses.create')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Создать статус            </a>
+    <a href="{{route('labels.create')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Создать метку            </a>
             </div>
 
 
@@ -17,19 +17,20 @@
             <tr>
                 <th>ID</th>
                 <th>Имя</th>
+                <th>Описание</th>
                 <th>Дата создания</th>
                 <th>Действия</th>
-
                             </tr>
         </thead>
-        @foreach ($statuses as $status)
+        @foreach ($labels as $label)
         <tr class="border-b border-dashed text-left">
-                <td>{{$status->id}}</td>
-                <td>{{$status->name}}</td>
-                <td>{{$status->created_at}}</td>
-<td><a  data-confirm="Вы уверены?" data-method="delete" class="text-red-600 hover:text-red-900" rel="nofollow" href="{{route('task_statuses.destroy', $status)}}">
+                <td>{{$label->id}}</td>
+                <td>{{$label->name}}</td>
+                <td>{{$label->description}}</td>
+                <td>{{$label->created_at}}</td>
+<td><a  data-confirm="Вы уверены?" data-method="delete" class="text-red-600 hover:text-red-900" rel="nofollow" href="{{route('labels.destroy', $label)}}">
                 Удалить</a>
-                <a class="text-blue-600 hover:text-blue-900" href="{{route('task_statuses.edit', $status)}}">
+                <a class="text-blue-600 hover:text-blue-900" href="{{route('labels.edit', $label)}}">
                 Изменить</a></td>
             </tr>
         @endforeach

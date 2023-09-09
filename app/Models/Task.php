@@ -13,7 +13,7 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'status_id', 'assigned_to_id', 'label_id'];
+    protected $fillable = ['name', 'description', 'status_id', 'assigned_to_id'];
 
     public function created_by()
     {
@@ -32,6 +32,6 @@ class Task extends Model
 
     public function labels()
     {
-        return $this->belongsToMany(Label::class);
+        return $this->belongsToMany(Label::class, 'label_tasks', 'task_id', 'label_id');
     }
 }

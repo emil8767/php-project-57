@@ -64,7 +64,8 @@ class TaskController extends Controller
         $labels = Label::all()->sortBy('id')
         ->mapWithKeys(function ($item, $key) {
             return [$item['id'] => $item['name']];
-        })->all();      
+        })->all();
+             
         return view('tasks.create', ['statuses' => $statuses, 'task' => $task, 'users' => $users, 'labels' => $labels]);
     }
 
@@ -73,18 +74,18 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        
         $validator = $this->validate($request, [
             'name' => 'required|unique:tasks',
             'status_id' => 'required',
             'assigned_to_id' => 'nullable',
             'description' => 'nullable',
-            'label_id' => 'nullable',
         ]);
         $task = new Task();
         $task->fill($validator);
         $task->created_by_id = intval(Auth::id());
         $task->save();
+        $labels = $request->input('label_id');
+        $task->labels()->attach($labels);
         return redirect()
         ->route('tasks.index')->with('success','Задача успешно создана');
 
@@ -95,7 +96,8 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        
+        return view('tasks.show', ['task' => $task]);
     }
 
     /**

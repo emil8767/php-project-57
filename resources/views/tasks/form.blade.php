@@ -33,8 +33,8 @@
     {{Form::select('assigned_to_id', $users, null, ['placeholder' => '----------', 'class' => 'rounded border-gray-300 w-1/3'])}}
   </div>
   <div class="mt-2">
-    {{ Form::label('label_id', 'Метки') }}
+    {{ Form::label('label_id[]', 'Метки') }}
   </div>
   <div>
-    {{Form::select('label_id', $labels, null, ['placeholder' => '', 'multiple' => true, 'class' => 'rounded border-gray-300 w-1/3 h-32'])}}
+    {{Form::select('label_id[]', $labels, null, ['placeholder' => '', 'multiple', 'class' => 'rounded border-gray-300 w-1/3 h-32'])}}
   </div>

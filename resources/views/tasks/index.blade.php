@@ -26,11 +26,12 @@
                     {{Form::close()}}
                 </div>
 </div>
-
+@if(Auth::check())
 <div class="flex">
     <a href="{{route('tasks.create')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Создать задачу            </a>
             </div>
+@endif
 
 
     <table class="mt-4">
@@ -43,7 +44,7 @@
                 <th>Исполнитель</th>
                 <th>Дата создания</th>
                 @if(Auth::check())
-                <th>Метки</th>
+                <th>Действия</th>
                 @endif
 
                             </tr>
@@ -52,11 +53,14 @@
         <tr class="border-b border-dashed text-left">
                 <td>{{$task->id}}</td>
                 <td>{{$task->status->name}}</td>
-                <td>{{$task->name}}</td>
+                <td>
+                    <a class="text-blue-600 hover:text-blue-900" href="{{ route('tasks.show', $task) }}">
+                    {{$task->name}}
+                    </a>
+                </td>
                 <td>{{$task->created_by->name}}</td>
                 <td>{{$task->assigned_to->name}}</td>
                 <td>{{$task->created_at}}</td>
-                <td>{{$task->label_id}}</td>
                 @can('update', $task)
 <td>@can('delete', $task)
     <a  data-confirm="Вы уверены?" data-method="delete" class="text-red-600 hover:text-red-900" rel="nofollow" href="{{route('tasks.destroy', $task)}}">

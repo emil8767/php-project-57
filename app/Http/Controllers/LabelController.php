@@ -58,9 +58,7 @@ class LabelController extends Controller
     public function destroy(Label $label)
     {
         $this->authorize('delete', $label);
-        if ($label->tasks->all()) {
-            return redirect()->route('labels.index')->with('error', 'Не удалось удалить метку');
-        }
+        
         if ($label) {
             $label->delete();
           }

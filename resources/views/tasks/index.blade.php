@@ -42,7 +42,9 @@
                 <th>Автор</th>
                 <th>Исполнитель</th>
                 <th>Дата создания</th>
-                <th>Действия</th>
+                @if(Auth::check())
+                <th>Метки</th>
+                @endif
 
                             </tr>
         </thead>
@@ -55,10 +57,14 @@
                 <td>{{$task->assigned_to->name}}</td>
                 <td>{{$task->created_at}}</td>
                 <td>{{$task->label_id}}</td>
-<td><a  data-confirm="Вы уверены?" data-method="delete" class="text-red-600 hover:text-red-900" rel="nofollow" href="{{route('tasks.destroy', $task)}}">
+                @can('update', $task)
+<td>@can('delete', $task)
+    <a  data-confirm="Вы уверены?" data-method="delete" class="text-red-600 hover:text-red-900" rel="nofollow" href="{{route('tasks.destroy', $task)}}">
                 Удалить</a>
+                @endcan
                 <a class="text-blue-600 hover:text-blue-900" href="{{route('tasks.edit', $task)}}">
                 Изменить</a></td>
+                @endcan
             </tr>
         @endforeach
             </table>

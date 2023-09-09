@@ -16,10 +16,10 @@ class LabelController extends Controller
     }
 
     
-    public function create()
+    public function create(Label $label)
     {
-        $label = new Label();
-        return view('labels.create', compact('label'));
+        $this->authorize('create', $label);
+        return view('labels.create', ['label' => $label]);
     }
 
   
@@ -38,6 +38,8 @@ class LabelController extends Controller
 
     public function edit(Label $label)
     {
+        
+        $this->authorize('update', $label);
         return view('labels.edit', ['label' => $label]);
     }
 
@@ -55,6 +57,10 @@ class LabelController extends Controller
 
     public function destroy(Label $label)
     {
+        $this->authorize('delete', $label);
+        if ($label->tasks->all()) {
+            return redirect()->route('labels.index')->with('error', 'Не удалось удалить метку');
+        }
         if ($label) {
             $label->delete();
           }

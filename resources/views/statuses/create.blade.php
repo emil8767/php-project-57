@@ -6,20 +6,11 @@
             <div class="grid col-span-full">
     <h1 class="mb-5">Создать статус</h1>
 
-    @if ($errors->any())
-    <div>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
 {{ Form::model($status, ['route' => 'task_statuses.store']) }}
-    {{ Form::label('name', 'Имя') }}
-    {{ Form::text('name') }}<br>
-    {{ Form::submit('Создать') }}
+@include('statuses.form')
+<div class="mt-2">
+    {{ Form::submit('Создать', ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded']) }}
+</div>
 {{ Form::close() }}
 
 </div>

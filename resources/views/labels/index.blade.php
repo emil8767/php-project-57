@@ -19,7 +19,9 @@
                 <th>Имя</th>
                 <th>Описание</th>
                 <th>Дата создания</th>
+                @if(Auth::check())
                 <th>Действия</th>
+                @endif
                             </tr>
         </thead>
         @foreach ($labels as $label)
@@ -28,11 +30,13 @@
                 <td>{{$label->name}}</td>
                 <td>{{$label->description}}</td>
                 <td>{{$label->created_at}}</td>
+                @can('update', $label)
 <td><a  data-confirm="Вы уверены?" data-method="delete" class="text-red-600 hover:text-red-900" rel="nofollow" href="{{route('labels.destroy', $label)}}">
                 Удалить</a>
                 <a class="text-blue-600 hover:text-blue-900" href="{{route('labels.edit', $label)}}">
                 Изменить</a></td>
             </tr>
+            @endcan
         @endforeach
             </table>
     

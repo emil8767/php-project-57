@@ -18,19 +18,22 @@
                 <th>ID</th>
                 <th>Имя</th>
                 <th>Дата создания</th>
+                @if(Auth::check())
                 <th>Действия</th>
-
-                            </tr>
+                @endif
+            </tr>
         </thead>
         @foreach ($statuses as $status)
         <tr class="border-b border-dashed text-left">
                 <td>{{$status->id}}</td>
                 <td>{{$status->name}}</td>
                 <td>{{$status->created_at}}</td>
+                @can('update', $status)
 <td><a  data-confirm="Вы уверены?" data-method="delete" class="text-red-600 hover:text-red-900" rel="nofollow" href="{{route('task_statuses.destroy', $status)}}">
                 Удалить</a>
                 <a class="text-blue-600 hover:text-blue-900" href="{{route('task_statuses.edit', $status)}}">
                 Изменить</a></td>
+                @endcan
             </tr>
         @endforeach
             </table>

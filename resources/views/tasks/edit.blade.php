@@ -17,17 +17,10 @@
 
     
 {{ Form::model($task, ['route' => ['tasks.update', $task], 'method' => 'PATCH']) }}
-    {{ Form::label('name', 'Имя') }}
-    {{ Form::text('name') }}<br>
-    {{ Form::label('description', 'Описание') }}
-    {{ Form::textarea('description') }}<br>
-    {{ Form::label('status_id', 'Статус') }}
-    {{ Form::select('status_id', $statuses, null, ['placeholder' => '----------']) }}<br>
-    {{ Form::label('assigned_to_id', 'Исполнитель') }}
-    {{ Form::select('assigned_to_id', $users, null, ['placeholder' => '----------']) }}<br>
-    {{ Form::label('label_id', 'Метки') }}
-    {{ Form::select('label_id', $labels, null, ['placeholder' => '', 'multiple']) }}<br>
-    {{ Form::submit('Обновить') }}
+@include('tasks.form')
+    <div class="mt-2">
+    {{ Form::submit('Обновить', ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded']) }}
+    </div>
 {{ Form::close() }}
 
 </div>

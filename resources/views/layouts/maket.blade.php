@@ -8,10 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="csrf-param" content="_token" />
-    
-
     <title>Менеджер задач</title>
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <link rel="preload" as="style" href="https://php-task-manager-ru.hexlet.app/build/assets/app.8ad19020.css" /><link rel="modulepreload" href="https://php-task-manager-ru.hexlet.app/build/assets/app.42df0f0d.js" /><link rel="stylesheet" href="https://php-task-manager-ru.hexlet.app/build/assets/app.8ad19020.css" /><script type="module" src="https://php-task-manager-ru.hexlet.app/build/assets/app.42df0f0d.js"></script>
@@ -29,17 +26,19 @@
                     </a>
                     @if(!Auth::check())
                     <div class="flex items-center lg:order-2">
-                                                    <a href="{{route('login')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Вход
-                            </a>
-                                                            <a href="{{route('register')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
-                                    Регистрация
-                                </a>
-                                                                        </div>
+                    <a href="{{route('login')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Вход</a>
+                    <a href="{{route('register')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+                    Регистрация</a>
+                    </div>
                     @endif
                     @if(Auth::check())
-                    <a method="post" href="logout" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
-                                Выход </a>
+                    <div class="flex items-center lg:order-2">
+                    {{Form::open(['route' => 'logout', 'method' => 'POST'])}}
+                    {{ Form::submit('Выход', ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded']) }}
+                    {{Form::close()}}
+
+                    </div>
                     @endif
                     <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1">
                         <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">

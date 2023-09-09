@@ -16,9 +16,10 @@ class TaskStatusController extends Controller
         return view('statuses.index', compact('statuses'));
     }
 
-    public function create(TaskStatus $status)
+    public function create(TaskStatus $taskStatus)
     {
-        return view('statuses.create', compact('status'));
+        $this->authorize('create', $taskStatus);
+        return view('statuses.create', ['status' => $taskStatus]);
     }
 
     public function store(Request $request)
@@ -30,10 +31,11 @@ class TaskStatusController extends Controller
             ->route('task_statuses.index')->with('success','Статус успешно создан');
     }
 
-    public function edit($id)
+    public function edit(TaskStatus $taskStatus)
     {
-        $status = TaskStatus::findOrFail($id);
-        return view('statuses.edit', compact('status'));
+        
+        $this->authorize('update', $taskStatus);
+        return view('statuses.edit', ['status' => $taskStatus]);
         
     }
 
@@ -49,6 +51,9 @@ class TaskStatusController extends Controller
     public function destroy(TaskStatus $taskStatus)
     {
         $this->authorize('delete', $taskStatus);
+        if ($taskStatus->tasks->all()) {
+            return redirect()->route('task_statuses.index')->with('error', 'Не удалось удалить статус');
+        }
         if ($taskStatus) {
             $taskStatus->delete();
           }

@@ -17,7 +17,9 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        
+        $statusId = $request->input('status_id');
+        $createdId = $request->input('created_by_id');
+        $assignedId = $request->input('assigned_to_id');
         $tasks = Task::orderBy('id')->paginate();
         $statuses = TaskStatus::all()->sortBy('id')
         ->mapWithKeys(function ($item, $key) {
@@ -27,17 +29,30 @@ class TaskController extends Controller
         ->mapWithKeys(function ($item, $key) {
             return [$item['id'] => $item['name']];
         })->all();
-        
+        if ($statusId || $createdId || $assignedId) {
+            $taskQuery = Task::query();
+            if ($statusId) {
+                $taskQuery->where('status_id', $statusId);
+            }
+            if ($createdId) {
+                $taskQuery->where('created_by_id', $createdId);
+            }
+            if ($assignedId) {
+                $taskQuery->where('assigned_to_id', $assignedId);
+            }
+            $tasks = $taskQuery->paginate();
+            return view('tasks.index', ['statuses' => $statuses, 'tasks' => $tasks, 'users' => $users]);
+            
+        }        
         return view('tasks.index', ['statuses' => $statuses, 'tasks' => $tasks, 'users' => $users]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Task $task)
     {
-        
-        $task = new Task();
+        $this->authorize('create', $task);
         $statuses = TaskStatus::all()->sortBy('id')
         ->mapWithKeys(function ($item, $key) {
             return [$item['id'] => $item['name']];
@@ -71,7 +86,7 @@ class TaskController extends Controller
         $task->created_by_id = intval(Auth::id());
         $task->save();
         return redirect()
-        ->route('tasks.index');
+        ->route('tasks.index')->with('success','Задача успешно создана');
 
     }
 
@@ -88,6 +103,8 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
+        
+        $this->authorize('update', $task);
         $statuses = TaskStatus::all()->sortBy('id')
         ->mapWithKeys(function ($item, $key) {
             return [$item['id'] => $item['name']];
@@ -118,7 +135,7 @@ class TaskController extends Controller
         $task->fill($validator);
         $task->save();
         return redirect()
-        ->route('tasks.index');
+        ->route('tasks.index')->with('success','Задача успешно изменена');
     }
 
     /**
@@ -126,7 +143,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        
+        $this->authorize('delete', $task);
         $task->delete();
           
           return redirect()->route('tasks.index');

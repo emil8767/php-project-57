@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Gate;
 
 class TaskStatusController extends Controller
 {
-   
-
+    
     public function index()
     {
         $statuses = TaskStatus::orderBy('id')->paginate();
@@ -24,6 +23,7 @@ class TaskStatusController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorize('create', TaskStatus::class);
         $status = new TaskStatus();
         $status->name = $request->input('name');
         $status->save();
@@ -41,6 +41,7 @@ class TaskStatusController extends Controller
 
     public function update(Request $request, TaskStatus $taskStatus)
     {
+        $this->authorize('update', $taskStatus);
         $taskStatus->name = $request->input('name');
         $taskStatus->save();
         return redirect()

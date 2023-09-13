@@ -25,10 +25,12 @@ class LabelController extends Controller
   
     public function store(Request $request)
     {
+        $this->authorize('create', Label::class);
         $label = new Label();
         $data = $this->validate($request, [
             'name' => 'required|unique:labels',
             'description' => 'nullable']);
+
         $label->fill($data);
         $label->save();
         return redirect()
@@ -45,7 +47,7 @@ class LabelController extends Controller
 
     public function update(Request $request, Label $label)
     {
-        $label->name = $request->input('name');
+        $this->authorize('update', $label);
         $data = $this->validate($request, [
             'name' => 'required|unique:labels,name,' . $label->id,
             'description' => 'nullable']);

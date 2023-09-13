@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('label_tasks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('label_id');
+            $table->unsignedBigInteger('label_id')->nullable();
             $table->unsignedBigInteger('task_id');
             $table->index('label_id', 'label_task_label_idx');
             $table->index('task_id', 'label_task_task_idx');

@@ -10,6 +10,7 @@ use App\Models\User;
 class DestroyTaskStatusTest extends TestCase
 {
     use RefreshDatabase;
+    
     public function test_destroy_task_status_user() {
         $this->seed();
         $user = User::factory()->create();

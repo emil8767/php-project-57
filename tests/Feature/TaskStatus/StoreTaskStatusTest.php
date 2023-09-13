@@ -20,12 +20,20 @@ class StoreTaskStatusTest extends TestCase
         $response->assertStatus(403);
     }
 
-    public function test_store_user() {
+    public function test_store_invalid() {
+        $this->seed();
+        $user = User::factory()->create();
+        $response = $this->actingAs($user)->post(route('task_statuses.store'), ['name' => 'sasha']);
+        $response->assertInvalid(['name']);
+    }
+
+    public function test_store_user_valid() {
         $user = User::factory()->create();
         $response = $this->actingAs($user)->post(route('task_statuses.store'), ['name' => 'Cantel']);
         $response->assertRedirect('/task_statuses');
         $this->assertDatabaseHas('task_statuses', [
             'name' => 'Cantel'
         ]);
+        $response->assertValid();
     }
 }

@@ -24,6 +24,9 @@ class TaskStatusController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create', TaskStatus::class);
+        $validator = $this->validate($request, [
+            'name' => 'required|unique:task_statuses',
+        ]);
         $status = new TaskStatus();
         $status->name = $request->input('name');
         $status->save();
@@ -42,6 +45,9 @@ class TaskStatusController extends Controller
     public function update(Request $request, TaskStatus $taskStatus)
     {
         $this->authorize('update', $taskStatus);
+        $validator = $this->validate($request, [
+            'name' => 'required|unique:task_statuses',
+        ]);
         $taskStatus->name = $request->input('name');
         $taskStatus->save();
         return redirect()

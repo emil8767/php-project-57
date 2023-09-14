@@ -74,6 +74,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Task::class);
         $validator = $this->validate($request, [
             'name' => 'required|unique:tasks',
             'status_id' => 'required',
@@ -91,18 +92,13 @@ class TaskController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(Task $task)
     {
         
         return view('tasks.show', ['task' => $task]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Task $task)
     {
         
@@ -122,11 +118,10 @@ class TaskController extends Controller
         return view('tasks.edit', ['statuses' => $statuses, 'task' => $task, 'users' => $users, 'labels' => $labels]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, Task $task)
     {
+        $this->authorize('update', $task);
         $validator = $this->validate($request, [
             'name' => 'required|unique:tasks',
             'status_id' => 'required',

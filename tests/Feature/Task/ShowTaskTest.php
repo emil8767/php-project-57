@@ -10,7 +10,7 @@ class ShowTaskTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_index(): void
+    public function test_show(): void
     {
         $this->seed();
         $response = $this->get('/tasks/2');

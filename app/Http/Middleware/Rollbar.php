@@ -8,10 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Rollbar
 {
-    
     public function handle(Request $request, Closure $next): Response
     {
-        
         return $next($request);
     }
 }

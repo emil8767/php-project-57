@@ -10,8 +10,8 @@ use App\Models\User;
 class UpdateTaskStatusTest extends TestCase
 {
     use RefreshDatabase;
-    
-    public function test_update_task_status_user_valid(): void
+
+    public function testUpdateTaskStatusUserValid(): void
     {
         $this->seed();
         $user = User::factory()->create();
@@ -23,7 +23,7 @@ class UpdateTaskStatusTest extends TestCase
         ]);
     }
 
-    public function test_update_task_status_user_invalid(): void
+    public function testUpdateTaskStatusUserInvalid(): void
     {
         $this->seed();
         $user = User::factory()->create();
@@ -31,7 +31,7 @@ class UpdateTaskStatusTest extends TestCase
         $response->assertInvalid(['name']);
     }
 
-    public function test_update_task_status_guest(): void
+    public function testUpdateTaskStatusGuest(): void
     {
         $this->seed();
         $response = $this->patch(route('task_statuses.update', 10));

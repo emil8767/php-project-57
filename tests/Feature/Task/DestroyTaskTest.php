@@ -11,15 +11,17 @@ use App\Models\Task;
 class DestroyTaskTest extends TestCase
 {
     use RefreshDatabase;
-    
-    public function test_destroy_task_not_the_author() {
+
+    public function testDestroyTaskNotTheAuthor()
+    {
         $this->seed();
         $user = User::factory()->create();
         $response = $this->actingAs($user)->delete(route('tasks.destroy', 2));
         $response->assertStatus(403);
     }
 
-    public function test_destroy_task_guest() {
+    public function testDestroyTaskGuest()
+    {
         $this->seed();
         $response = $this->delete(route('tasks.destroy', 2));
         $response->assertStatus(403);
@@ -28,7 +30,8 @@ class DestroyTaskTest extends TestCase
         ]);
     }
 
-    public function test_destroy_task_author() {
+    public function testDestroyTaskAuthor()
+    {
         $this->seed();
         $task = Task::where('name', 'baku')->firstOrFail();
         $response = $this->actingAs($task->created_by)->delete(route('tasks.destroy', $task));
@@ -37,6 +40,4 @@ class DestroyTaskTest extends TestCase
             'name' => 'baku'
         ]);
     }
-
-  
 }

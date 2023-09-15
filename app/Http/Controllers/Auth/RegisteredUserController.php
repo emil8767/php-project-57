@@ -34,12 +34,11 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $email = $request->email;
-        
 
         $user = User::create([
             'name' => $request->name,
@@ -47,7 +46,6 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-    
         Mail::to('your_receiver_email@gmail.com')->send(new MyTestMail($email));
 
         event(new Registered($user));

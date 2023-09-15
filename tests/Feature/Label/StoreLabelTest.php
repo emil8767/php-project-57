@@ -11,22 +11,22 @@ class StoreLabelTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_store_guest(): void
+    public function testStoreGuest(): void
     {
-        
         $response = $this->post(route('labels.store'));
-
         $response->assertStatus(403);
     }
 
-    public function test_store_invalid() {
+    public function testStoreInvalid()
+    {
         $this->seed();
         $user = User::factory()->create();
         $response = $this->actingAs($user)->post(route('labels.store'), ['name' => 'super']);
         $response->assertInvalid(['name']);
     }
 
-    public function test_store_user_valid() {
+    public function testStoreUserValid()
+    {
         $user = User::factory()->create();
         $response = $this->actingAs($user)->post(route('labels.store'), ['name' => 'Hi']);
         $response->assertRedirect('/labels');

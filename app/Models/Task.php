@@ -8,7 +8,6 @@ use App\Models\TaskStatus;
 use App\Models\Label;
 use App\Models\User;
 
-
 class Task extends Model
 {
     use HasFactory;

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskPolicy
 {
-   
     public function create(User $user): bool
     {
         return Auth::check();

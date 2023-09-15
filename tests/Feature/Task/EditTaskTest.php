@@ -10,8 +10,8 @@ use App\Models\User;
 class EditTaskTest extends TestCase
 {
     use RefreshDatabase;
-    
-    public function test_edit_task_user(): void
+
+    public function testEditTaskUser(): void
     {
         $this->seed();
         $user = User::factory()->create();
@@ -20,7 +20,7 @@ class EditTaskTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_edit_task_guest(): void
+    public function testEditTaskGuest(): void
     {
         $this->seed();
         $response = $this->get(route('tasks.edit', 2));

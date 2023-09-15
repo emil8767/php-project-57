@@ -42,8 +42,7 @@ class TaskController extends Controller
             }
             $tasks = $taskQuery->paginate();
             return view('tasks.index', ['statuses' => $statuses, 'tasks' => $tasks, 'users' => $users]);
-            
-        }        
+        }
         return view('tasks.index', ['statuses' => $statuses, 'tasks' => $tasks, 'users' => $users]);
     }
 
@@ -65,7 +64,7 @@ class TaskController extends Controller
         ->mapWithKeys(function ($item, $key) {
             return [$item['id'] => $item['name']];
         })->all();
-             
+
         return view('tasks.create', ['statuses' => $statuses, 'task' => $task, 'users' => $users, 'labels' => $labels]);
     }
 
@@ -88,20 +87,16 @@ class TaskController extends Controller
         $labels = $request->input('label_id');
         $task->labels()->attach($labels);
         return redirect()
-        ->route('tasks.index')->with('success','Задача успешно создана');
-
+        ->route('tasks.index')->with('success', 'Задача успешно создана');
     }
 
-    
     public function show(Task $task)
     {
-        
         return view('tasks.show', ['task' => $task]);
     }
 
     public function edit(Task $task)
     {
-        
         $this->authorize('update', $task);
         $statuses = TaskStatus::all()->sortBy('id')
         ->mapWithKeys(function ($item, $key) {
@@ -114,11 +109,10 @@ class TaskController extends Controller
         $labels = Label::all()->sortBy('id')
         ->mapWithKeys(function ($item, $key) {
             return [$item['id'] => $item['name']];
-        })->all();      
+        })->all();
         return view('tasks.edit', ['statuses' => $statuses, 'task' => $task, 'users' => $users, 'labels' => $labels]);
     }
 
-    
     public function update(Request $request, Task $task)
     {
         $this->authorize('update', $task);
@@ -132,17 +126,13 @@ class TaskController extends Controller
         $task->fill($validator);
         $task->save();
         return redirect()
-        ->route('tasks.index')->with('success','Задача успешно изменена');
+        ->route('tasks.index')->with('success', 'Задача успешно изменена');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Task $task)
     {
         $this->authorize('delete', $task);
         $task->delete();
-          
-          return redirect()->route('tasks.index');
+        return redirect()->route('tasks.index');
     }
 }

@@ -10,17 +10,16 @@ use App\Models\User;
 class EditTaskStatusTest extends TestCase
 {
     use RefreshDatabase;
-    
-    public function test_edit_task_status_user(): void
+
+    public function testEditTaskStatusUser(): void
     {
         $this->seed();
         $user = User::factory()->create();
         $response = $this->actingAs($user)->get(route('task_statuses.edit', 10));
-
         $response->assertStatus(200);
     }
 
-    public function test_edit_task_status_guest(): void
+    public function testEditTaskStatusGuest(): void
     {
         $this->seed();
         $response = $this->get(route('task_statuses.edit', 10));

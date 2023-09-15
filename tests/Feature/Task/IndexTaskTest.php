@@ -10,12 +10,11 @@ class IndexTaskTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_index(): void
+    public function testIndex(): void
     {
         $this->seed();
         $response = $this->get('/tasks');
         $response->assertSee('baku');
         $response->assertStatus(200);
     }
-    
 }

@@ -10,8 +10,9 @@ use App\Models\User;
 class DestroyLabelTest extends TestCase
 {
     use RefreshDatabase;
-    
-    public function test_destroy_label_user() {
+
+    public function testDestroyLabelUser()
+    {
         $this->seed();
         $user = User::factory()->create();
         $response = $this->actingAs($user)->delete(route('labels.destroy', 5));
@@ -21,7 +22,8 @@ class DestroyLabelTest extends TestCase
         ]);
     }
 
-    public function test_destroy_label_guest() {
+    public function testDestroyLabelGuest()
+    {
         $this->seed();
         $response = $this->delete(route('labels.destroy', 5));
         $response->assertStatus(403);

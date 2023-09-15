@@ -10,20 +10,17 @@ use App\Models\User;
 class CreateTaskStatusTest extends TestCase
 {
     use RefreshDatabase;
-    
-    public function test_create_task_status_user(): void
+
+    public function testCreateTaskStatusUser(): void
     {
         $user = User::factory()->create();
         $response = $this->actingAs($user)->get('/task_statuses/create');
-
         $response->assertStatus(200);
     }
 
-    public function test_create_task_status_guest(): void
+    public function testCreateTaskStatusGuest(): void
     {
-        
         $response = $this->get('/task_statuses/create');
-
         $response->assertStatus(403);
     }
 }

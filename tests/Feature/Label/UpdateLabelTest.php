@@ -10,8 +10,8 @@ use App\Models\User;
 class UpdateLabelTest extends TestCase
 {
     use RefreshDatabase;
-    
-    public function test_update_label_user_valid(): void
+
+    public function testUpdateLabelUserValid(): void
     {
         $this->seed();
         $user = User::factory()->create();
@@ -23,7 +23,7 @@ class UpdateLabelTest extends TestCase
         ]);
     }
 
-    public function test_update_label_user_invalid(): void
+    public function testUpdateLabelUserInvalid(): void
     {
         $this->seed();
         $user = User::factory()->create();
@@ -31,7 +31,7 @@ class UpdateLabelTest extends TestCase
         $response->assertInvalid(['name']);
     }
 
-    public function test_update_label_guest(): void
+    public function testUpdateLabelGuest(): void
     {
         $this->seed();
         $response = $this->patch(route('labels.update', 5));

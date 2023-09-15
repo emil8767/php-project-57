@@ -8,21 +8,18 @@ use Illuminate\Support\Facades\Gate;
 
 class LabelController extends Controller
 {
-   
     public function index()
     {
         $labels = Label::orderBy('id')->paginate();
         return view('labels.index', compact('labels'));
     }
 
-    
     public function create(Label $label)
     {
         $this->authorize('create', $label);
         return view('labels.create', ['label' => $label]);
     }
 
-  
     public function store(Request $request)
     {
         $this->authorize('create', Label::class);
@@ -34,13 +31,11 @@ class LabelController extends Controller
         $label->fill($data);
         $label->save();
         return redirect()
-            ->route('labels.index')->with('success','Метка успешно создана');
-    
+            ->route('labels.index')->with('success', 'Метка успешно создана');
     }
 
     public function edit(Label $label)
     {
-        
         $this->authorize('update', $label);
         return view('labels.edit', ['label' => $label]);
     }
@@ -54,16 +49,15 @@ class LabelController extends Controller
         $label->fill($data);
         $label->save();
         return redirect()
-            ->route('labels.index')->with('success','Метка успешно изменена');
+            ->route('labels.index')->with('success', 'Метка успешно изменена');
     }
 
     public function destroy(Label $label)
     {
         $this->authorize('delete', $label);
-        
         if ($label) {
             $label->delete();
-          }
-          return redirect()->route('labels.index')->with('success','Метка успешно удалена');
+        }
+        return redirect()->route('labels.index')->with('success', 'Метка успешно удалена');
     }
 }

@@ -10,8 +10,8 @@ use App\Models\User;
 class EditLabelTest extends TestCase
 {
     use RefreshDatabase;
-    
-    public function test_edit_label_user(): void
+
+    public function testEditLabelUser(): void
     {
         $this->seed();
         $user = User::factory()->create();
@@ -20,7 +20,7 @@ class EditLabelTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_edit_label_guest(): void
+    public function testEditLabelGuest(): void
     {
         $this->seed();
         $response = $this->get(route('labels.edit', 5));

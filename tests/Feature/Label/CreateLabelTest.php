@@ -10,8 +10,8 @@ use App\Models\User;
 class CreateLabelTest extends TestCase
 {
     use RefreshDatabase;
-    
-    public function test_create_label_user(): void
+
+    public function testCreateLabelUser(): void
     {
         $user = User::factory()->create();
         $response = $this->actingAs($user)->get('/labels/create');
@@ -19,11 +19,9 @@ class CreateLabelTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_create_label_guest(): void
+    public function testCreateLabelGuest(): void
     {
-        
         $response = $this->get('/labels/create');
-
         $response->assertStatus(403);
     }
 }

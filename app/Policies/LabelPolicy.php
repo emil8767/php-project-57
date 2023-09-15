@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LabelPolicy
 {
-    
     public function create(User $user): bool
     {
         return Auth::check();
@@ -20,7 +19,6 @@ class LabelPolicy
         return Auth::check();
     }
 
-   
     public function delete(User $user, Label $label): bool
     {
         return Auth::check();

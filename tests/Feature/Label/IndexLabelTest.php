@@ -10,7 +10,7 @@ class IndexLabelTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_index(): void
+    public function testIndex(): void
     {
         $this->seed();
         $response = $this->get('/labels');

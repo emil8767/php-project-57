@@ -8,10 +8,8 @@ use Illuminate\Support\Facades\Gate;
 
 class TaskStatusController extends Controller
 {
-    
     public function index()
     {
-        
         $statuses = TaskStatus::orderBy('id')->paginate();
         return view('statuses.index', compact('statuses'));
     }
@@ -31,16 +29,13 @@ class TaskStatusController extends Controller
         $status = new TaskStatus();
         $status->name = $request->input('name');
         $status->save();
-        return redirect()
-            ->route('task_statuses.index')->with('success','Статус успешно создан');
+        return redirect()->route('task_statuses.index')->with('success', 'Статус успешно создан');
     }
 
     public function edit(TaskStatus $taskStatus)
     {
-        
         $this->authorize('update', $taskStatus);
         return view('statuses.edit', ['status' => $taskStatus]);
-        
     }
 
     public function update(Request $request, TaskStatus $taskStatus)
@@ -51,9 +46,7 @@ class TaskStatusController extends Controller
         ]);
         $taskStatus->name = $request->input('name');
         $taskStatus->save();
-        return redirect()
-            ->route('task_statuses.index')->with('success','Статус успешно изменён');
-
+        return redirect()->route('task_statuses.index')->with('success', 'Статус успешно изменён');
     }
 
     public function destroy(TaskStatus $taskStatus)
@@ -64,7 +57,7 @@ class TaskStatusController extends Controller
         }
         if ($taskStatus) {
             $taskStatus->delete();
-          }
-          return redirect()->route('task_statuses.index');
+        }
+        return redirect()->route('task_statuses.index');
     }
 }

@@ -13,7 +13,8 @@
         "laravel/tinker": "^2.8",
         "laravelcollective/html": "^6.4",
         "rollbar/rollbar": "^4.0",
-        "rollbar/rollbar-laravel": "^8.0"
+        "rollbar/rollbar-laravel": "^8.0",
+        "sentry/sentry-laravel": "^3.8"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

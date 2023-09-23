@@ -75,6 +75,7 @@ return [
 
         'slack' => [
             'driver' => 'slack',
+            'channels' => ['single', 'sentry'],
             'url' => env('LOG_SLACK_WEBHOOK_URL'),
             'username' => 'Laravel Log',
             'emoji' => ':boom:',
@@ -92,6 +93,10 @@ return [
                 'connectionString' => 'tls://'.env('PAPERTRAIL_URL').':'.env('PAPERTRAIL_PORT'),
             ],
             'processors' => [PsrLogMessageProcessor::class],
+        ],
+
+        'sentry' => [
+            'driver' => 'sentry',
         ],
 
         'stderr' => [

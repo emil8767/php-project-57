@@ -46,7 +46,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        Mail::to('your_receiver_email@gmail.com')->send(new MyTestMail($email));
+        Mail::to($email)->send(new MyTestMail($email));
 
         event(new Registered($user));
 
